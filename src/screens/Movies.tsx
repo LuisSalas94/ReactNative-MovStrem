@@ -8,14 +8,13 @@ const Movies = () => {
   const dispatch = useAppDispatch();
   const {movies, isLoading} = useAppSelector(state => state.movies);
 
-  useEffect(() => {
+  /*   useEffect(() => {
     dispatch(fetchAsyncMovies());
-  }, [dispatch]);
+  }, [dispatch]); */
 
   return (
     <View>
       <HomeScreen />
-      <Text>Movies</Text>
     </View>
   );
 };
