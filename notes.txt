@@ -1,0 +1,9 @@
+React Native Boilerplate
+- React Native CLI
+- React 18.2.0
+- Axios
+- React Native Vector Icons - Ionicons
+- Redux Toolkit
+- React Redux
+- React Navigation
+- Stack Navigator
