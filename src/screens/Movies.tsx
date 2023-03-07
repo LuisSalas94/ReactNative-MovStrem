@@ -6,11 +6,11 @@ import HomeScreen from '../components/HomeScreen';
 
 const Movies = () => {
   const dispatch = useAppDispatch();
-  const {movies, isLoading} = useAppSelector(state => state.movies);
+  //const {movies, isLoading} = useAppSelector(state => state.movies);
 
-  /*   useEffect(() => {
+  useEffect(() => {
     dispatch(fetchAsyncMovies());
-  }, [dispatch]); */
+  }, [dispatch]);
 
   return (
     <View>

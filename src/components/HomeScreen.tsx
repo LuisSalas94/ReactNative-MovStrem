@@ -1,4 +1,5 @@
 import {
+  Dimensions,
   ScrollView,
   StyleSheet,
   Text,
@@ -7,8 +8,20 @@ import {
 } from 'react-native';
 import React from 'react';
 import MovstremIcon from './MovstremIcon';
+//* Custom Hooks
+import {useAppSelector} from '../hooks/storeHooks';
+//* Carousel
+import Carousel from 'react-native-snap-carousel';
+import {MoviePoster} from './MoviePoster';
+//* Divider
+import Divider from 'react-native-divider';
+
+//* Window Dimensions
+const {width: windowWidth} = Dimensions.get('window');
 
 const HomeScreen = () => {
+  const moviesState = useAppSelector(state => state.movies.movies);
+
   return (
     <ScrollView>
       <View>
@@ -27,14 +40,35 @@ const HomeScreen = () => {
           theaters that you’re dying to see, MOVstrem can even help you view
           show times and purchase tickets for in person viewing.
         </Text>
+
         <View style={styles.homeScreenButtonContainer}>
-          <TouchableOpacity style={styles.homeScreenButton1}>
+          <TouchableOpacity
+            activeOpacity={0.8}
+            style={styles.homeScreenButton1}>
             <Text style={styles.homeScreenButton1Text}>Show Plan</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.homeScreenButton2}>
+          <TouchableOpacity
+            activeOpacity={0.8}
+            style={styles.homeScreenButton2}>
             <Text style={styles.homeScreenButton2Text}>Get Started</Text>
           </TouchableOpacity>
         </View>
+        <View style={styles.dividerContainer}>
+          <Divider borderColor="#333" color="#333">
+            Movies
+          </Divider>
+        </View>
+      </View>
+
+      {/* Carousel */}
+      <View style={styles.carouselContainer}>
+        <Carousel
+          data={moviesState}
+          renderItem={({item}: any) => <MoviePoster movie={item} />}
+          sliderWidth={windowWidth}
+          itemWidth={300}
+          inactiveSlideOpacity={0.9}
+        />
       </View>
     </ScrollView>
   );
@@ -87,5 +121,12 @@ const styles = StyleSheet.create({
     color: '#f44336',
     fontSize: 16,
     textAlign: 'center',
+  },
+  carouselContainer: {
+    marginTop: 55,
+    height: 440,
+  },
+  dividerContainer: {
+    marginTop: 25,
   },
 });
