@@ -13,6 +13,8 @@ import {RootStackParams} from '../navigation/BottomTabs';
 import {useAppDispatch, useAppSelector} from '../hooks/storeHooks';
 import {fetchAsyncMovieOrShowDetails} from '../features/movieDetails/movieDetailsSlice';
 import Icon from 'react-native-vector-icons/Ionicons';
+//* Shared Features
+import Share from 'react-native-share';
 
 //* Get the height of the screen
 const screenHeight = Dimensions.get('screen').height;
@@ -30,7 +32,6 @@ const DetailScreen = ({route, navigation}: Props) => {
     Poster,
     imdbRating,
     Title,
-    Actors,
     Released,
     Director,
     Plot,
@@ -43,6 +44,17 @@ const DetailScreen = ({route, navigation}: Props) => {
   useEffect(() => {
     dispatch(fetchAsyncMovieOrShowDetails(imdbID));
   }, [dispatch, imdbID]);
+
+  const myCustomShare = async (title: string) => {
+    const shareOptions = {
+      message: `MOVstream invites you to check out this movie: ${title}`,
+    };
+    try {
+      const ShareResponse = await Share.open(shareOptions);
+    } catch (error) {
+      console.log('Error =>', error);
+    }
+  };
 
   return (
     <ScrollView>
@@ -74,7 +86,12 @@ const DetailScreen = ({route, navigation}: Props) => {
             <Icon name="heart-outline" size={27} color="#f44336" />
           </TouchableOpacity>
           <TouchableOpacity>
-            <Icon name="share-social-outline" size={27} color="#f44336" />
+            <Icon
+              name="share-social-outline"
+              size={27}
+              color="#f44336"
+              onPress={() => myCustomShare(Title)}
+            />
           </TouchableOpacity>
           <TouchableOpacity>
             <Icon name="bookmark-outline" size={27} color="#f44336" />
