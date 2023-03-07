@@ -17,6 +17,7 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import Share from 'react-native-share';
 //* Redux Actions
 import {incrementHeartCount} from '../features/movieDetails/movieDetailsSlice';
+import {addToFavorites} from '../features/moviesFavorites/moviesFavoritesSlice';
 
 //* Get the height of the screen
 const screenHeight = Dimensions.get('screen').height;
@@ -99,7 +100,7 @@ const DetailScreen = ({route, navigation}: Props) => {
               onPress={() => myCustomShare(Title)}
             />
           </TouchableOpacity>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={() => dispatch(addToFavorites(movie))}>
             <Icon name="bookmark-outline" size={27} color="#f44336" />
           </TouchableOpacity>
         </View>
@@ -124,7 +125,6 @@ const DetailScreen = ({route, navigation}: Props) => {
         <View>
           <Text style={styles.contentText}>
             <Text style={styles.spanText}> BoxOffice: </Text>
-
             {BoxOffice}
           </Text>
         </View>
