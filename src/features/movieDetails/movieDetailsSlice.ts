@@ -5,11 +5,13 @@ import {MovieDetailResponse} from '../../interfaces/movieInterface';
 //* MovieDetails Interface
 export type MovieDetails = {
   movieDetails: MovieDetailResponse;
+  heartCount: number;
 };
 
 //* Initial state
 const initialState: MovieDetails = {
   movieDetails: {} as MovieDetailResponse,
+  heartCount: 0,
 };
 
 //* MovieDetails Thunk Function
@@ -25,13 +27,20 @@ export const fetchAsyncMovieOrShowDetails = createAsyncThunk(
 const movieDetailsSlice = createSlice({
   name: 'movieDetails',
   initialState,
-  reducers: {},
+  reducers: {
+    incrementHeartCount: (state, action) => {
+      state.heartCount = state.heartCount + 1;
+    },
+  },
   extraReducers: builder => {
     builder.addCase(fetchAsyncMovieOrShowDetails.fulfilled, (state, action) => {
       state.movieDetails = action.payload;
     });
   },
 });
+
+//* Export actions
+export const {incrementHeartCount} = movieDetailsSlice.actions;
 
 //* Export reducer
 export default movieDetailsSlice.reducer;

@@ -7,7 +7,7 @@ import {
   Image,
   TouchableOpacity,
 } from 'react-native';
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import {StackScreenProps} from '@react-navigation/stack';
 import {RootStackParams} from '../navigation/BottomTabs';
 import {useAppDispatch, useAppSelector} from '../hooks/storeHooks';
@@ -15,6 +15,8 @@ import {fetchAsyncMovieOrShowDetails} from '../features/movieDetails/movieDetail
 import Icon from 'react-native-vector-icons/Ionicons';
 //* Shared Features
 import Share from 'react-native-share';
+//* Redux Actions
+import {incrementHeartCount} from '../features/movieDetails/movieDetailsSlice';
 
 //* Get the height of the screen
 const screenHeight = Dimensions.get('screen').height;
@@ -27,6 +29,7 @@ const DetailScreen = ({route, navigation}: Props) => {
   const {imdbID} = movie;
   const dispatch = useAppDispatch();
   const movieDetails = useAppSelector(state => state.movieDetails);
+  const heartCounter = useAppSelector(state => state.movieDetails.heartCount);
 
   const {
     Poster,
@@ -82,8 +85,11 @@ const DetailScreen = ({route, navigation}: Props) => {
           </TouchableOpacity>
         </View>
         <View style={styles.iconContainer}>
-          <TouchableOpacity>
+          <TouchableOpacity
+            style={{flexDirection: 'row', alignItems: 'center', gap: 10}}
+            onPress={() => dispatch(incrementHeartCount(imdbID))}>
             <Icon name="heart-outline" size={27} color="#f44336" />
+            <Text>{heartCounter}</Text>
           </TouchableOpacity>
           <TouchableOpacity>
             <Icon
