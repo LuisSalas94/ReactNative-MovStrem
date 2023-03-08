@@ -17,7 +17,12 @@ const movieFavoritesSlice = createSlice({
   initialState,
   reducers: {
     addToFavorites: (state, action) => {
-      state.moviesFavorites.push(action.payload);
+      const movie = action.payload;
+      //state.moviesFavorites.push(action.payload);
+      //* If movie is not in the array, add it
+      if (!state.moviesFavorites.includes(movie)) {
+        state.moviesFavorites.push(action.payload);
+      }
     },
   },
 });

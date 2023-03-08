@@ -7,17 +7,16 @@ import {
   Image,
   TouchableOpacity,
 } from 'react-native';
-import React, {useEffect, useState} from 'react';
+import React, {useEffect} from 'react';
 import {StackScreenProps} from '@react-navigation/stack';
 import {RootStackParams} from '../navigation/BottomTabs';
 import {useAppDispatch, useAppSelector} from '../hooks/storeHooks';
 import {fetchAsyncMovieOrShowDetails} from '../features/movieDetails/movieDetailsSlice';
 import Icon from 'react-native-vector-icons/Ionicons';
-//* Shared Features
-import Share from 'react-native-share';
+
 //* Redux Actions
-import {incrementHeartCount} from '../features/movieDetails/movieDetailsSlice';
-import {addToFavorites} from '../features/moviesFavorites/moviesFavoritesSlice';
+import MovieContent from './MovieContent';
+import MovieContentButtons from './MovieContentButtons';
 
 //* Get the height of the screen
 const screenHeight = Dimensions.get('screen').height;
@@ -30,7 +29,6 @@ const DetailScreen = ({route, navigation}: Props) => {
   const {imdbID} = movie;
   const dispatch = useAppDispatch();
   const movieDetails = useAppSelector(state => state.movieDetails);
-  const heartCounter = useAppSelector(state => state.movieDetails.heartCount);
 
   const {
     Poster,
@@ -48,17 +46,6 @@ const DetailScreen = ({route, navigation}: Props) => {
   useEffect(() => {
     dispatch(fetchAsyncMovieOrShowDetails(imdbID));
   }, [dispatch, imdbID]);
-
-  const myCustomShare = async (title: string) => {
-    const shareOptions = {
-      message: `MOVstream invites you to check out this movie: ${title}`,
-    };
-    try {
-      const ShareResponse = await Share.open(shareOptions);
-    } catch (error) {
-      console.log('Error =>', error);
-    }
-  };
 
   return (
     <ScrollView>
@@ -79,60 +66,21 @@ const DetailScreen = ({route, navigation}: Props) => {
         </TouchableOpacity>
       </View>
       {/* Rating */}
-      <View style={styles.ratingContainer}>
-        <View>
-          <TouchableOpacity style={styles.ratingButton}>
-            <Text style={styles.ratingButtonText}>IMDB {imdbRating}/10</Text>
-          </TouchableOpacity>
-        </View>
-        <View style={styles.iconContainer}>
-          <TouchableOpacity
-            style={{flexDirection: 'row', alignItems: 'center', gap: 10}}
-            onPress={() => dispatch(incrementHeartCount(imdbID))}>
-            <Icon name="heart-outline" size={27} color="#f44336" />
-            <Text>{heartCounter}</Text>
-          </TouchableOpacity>
-          <TouchableOpacity>
-            <Icon
-              name="share-social-outline"
-              size={27}
-              color="#f44336"
-              onPress={() => myCustomShare(Title)}
-            />
-          </TouchableOpacity>
-          <TouchableOpacity onPress={() => dispatch(addToFavorites(movie))}>
-            <Icon name="bookmark-outline" size={27} color="#f44336" />
-          </TouchableOpacity>
-        </View>
-      </View>
+      <MovieContentButtons
+        imdbRating={imdbRating}
+        imdbID={imdbID}
+        Title={Title}
+        movie={movie}
+      />
       {/* Content */}
-      <View style={styles.contentContainer}>
-        <Text style={styles.contentText}>
-          <Text style={styles.spanText}>Title:</Text> {Title}
-        </Text>
-        <View>
-          <Text style={styles.contentText}>
-            <Text style={styles.spanText}>Released:</Text> {Released} -{' '}
-            {Runtime}
-          </Text>
-        </View>
-        <View>
-          <Text style={styles.contentText}>
-            <Text style={styles.spanText}> Directed by: </Text>
-            {Director}
-          </Text>
-        </View>
-        <View>
-          <Text style={styles.contentText}>
-            <Text style={styles.spanText}> BoxOffice: </Text>
-            {BoxOffice}
-          </Text>
-        </View>
-        <View>
-          <Text style={{...styles.contentText, marginTop: 10}}>{Plot}</Text>
-        </View>
-      </View>
-      <View style={{paddingVertical: 30}}></View>
+      <MovieContent
+        Title={Title}
+        Released={Released}
+        Runtime={Runtime}
+        Director={Director}
+        BoxOffice={BoxOffice}
+        Plot={Plot}
+      />
     </ScrollView>
   );
 };
@@ -162,37 +110,6 @@ const styles = StyleSheet.create({
   posterImage: {
     flex: 1,
   },
-  ratingContainer: {
-    marginTop: 20,
-    flexDirection: 'row',
-    alignItems: 'center',
-    paddingHorizontal: 20,
-    justifyContent: 'space-between',
-  },
-  ratingButton: {
-    borderWidth: 1,
-    borderColor: '#ccc',
-    backgroundColor: '#f44336',
-    padding: 8,
-    borderRadius: 5,
-  },
-  ratingButtonText: {
-    fontSize: 15,
-    fontWeight: '500',
-    color: 'white',
-  },
-  iconContainer: {
-    flexDirection: 'row',
-    gap: 15,
-  },
-  contentContainer: {
-    marginTop: 20,
-    paddingHorizontal: 20,
-  },
-  contentText: {
-    fontSize: 18,
-    lineHeight: 35,
-  },
   genreContainer: {
     position: 'absolute',
     bottom: 10,
@@ -217,9 +134,5 @@ const styles = StyleSheet.create({
     borderRadius: 50,
     backgroundColor: 'rgba(0,0,0,0.5)',
     borderColor: 'transparent',
-  },
-  spanText: {
-    color: '#f44336',
-    fontWeight: '500',
   },
 });
