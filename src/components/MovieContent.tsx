@@ -31,13 +31,13 @@ const MovieContent = ({
       <View>
         <Text style={styles.contentText}>
           <Text style={styles.spanText}> Directed by: </Text>
-          {Director}
+          {Director ? Director : <Text>Not available</Text>}
         </Text>
       </View>
       <View>
         <Text style={styles.contentText}>
           <Text style={styles.spanText}> BoxOffice: </Text>
-          {BoxOffice}
+          {BoxOffice ? BoxOffice : <Text>Not available</Text>}
         </Text>
       </View>
       <View>

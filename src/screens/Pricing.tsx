@@ -2,31 +2,6 @@ import {StyleSheet, Text, View, ScrollView} from 'react-native';
 import React from 'react';
 import PricingCard from '../components/PricingCard';
 
-const pricingInfo = [
-  {
-    title: 'Basic',
-    description: 'For small teams or office',
-    price: 10,
-    features: [
-      'Unlimited users',
-      'Unlimited projects',
-      'Unlimited storage',
-      'Unlimited support',
-    ],
-  },
-  {
-    title: 'Basic',
-    description: 'For small teams or office',
-    price: 10,
-    features: [
-      'Unlimited users',
-      'Unlimited projects',
-      'Unlimited storage',
-      'Unlimited support',
-    ],
-  },
-];
-
 const Pricing = () => {
   return (
     <ScrollView>

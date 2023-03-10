@@ -24,8 +24,6 @@ const HomeScreen = () => {
   const moviesState = useAppSelector(state => state.movies.movies);
   const isLoading = useAppSelector(state => state.movies.isLoading);
 
-  console.log(isLoading);
-
   return (
     <ScrollView>
       <View>
@@ -130,7 +128,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   carouselContainer: {
-    marginTop: 55,
+    marginTop: 25,
     height: 440,
   },
   dividerContainer: {
