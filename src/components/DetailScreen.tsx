@@ -28,7 +28,7 @@ const DetailScreen = ({route, navigation}: Props) => {
   const movie = route.params;
   const {imdbID} = movie;
   const dispatch = useAppDispatch();
-  const movieDetails = useAppSelector(state => state.movieDetails);
+  const movieDetails = useAppSelector(state => state.movieDetails.movieDetails);
 
   const {
     Poster,
@@ -40,7 +40,7 @@ const DetailScreen = ({route, navigation}: Props) => {
     Runtime,
     Genre,
     BoxOffice,
-  } = movieDetails.movieDetails;
+  } = movieDetails;
   const uri = Poster;
 
   useEffect(() => {
@@ -70,7 +70,7 @@ const DetailScreen = ({route, navigation}: Props) => {
         imdbRating={imdbRating}
         imdbID={imdbID}
         Title={Title}
-        movie={movie}
+        movie={movieDetails}
       />
       {/* Content */}
       <MovieContent

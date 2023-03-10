@@ -3,13 +3,13 @@ import React from 'react';
 import Icon from 'react-native-vector-icons/Ionicons';
 //* Shared Features
 import Share from 'react-native-share';
-import {Movie} from '../interfaces/movieInterface';
+import {Movie, MovieDetailResponse} from '../interfaces/movieInterface';
 import {useAppDispatch, useAppSelector} from '../hooks/storeHooks';
 import {incrementHeartCount} from '../features/movieDetails/movieDetailsSlice';
 import {addToFavorites} from '../features/moviesFavorites/moviesFavoritesSlice';
 
 interface Props {
-  movie: Movie;
+  movie: MovieDetailResponse;
   imdbRating: string;
   imdbID: string;
   Title: string;

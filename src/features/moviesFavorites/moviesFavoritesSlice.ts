@@ -24,11 +24,20 @@ const movieFavoritesSlice = createSlice({
         state.moviesFavorites.push(action.payload);
       }
     },
+    removeFromFavorites: (state, action) => {
+      console.log(action);
+      const movie = action.payload;
+      //* If movie is in the array, remove it
+      state.moviesFavorites = state.moviesFavorites.filter(
+        item => item.imdbID !== movie,
+      );
+    },
   },
 });
 
 //* Export actions
-export const {addToFavorites} = movieFavoritesSlice.actions;
+export const {addToFavorites, removeFromFavorites} =
+  movieFavoritesSlice.actions;
 
 //* Export reducer
 export default movieFavoritesSlice.reducer;
