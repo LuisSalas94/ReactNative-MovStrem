@@ -15,12 +15,16 @@ import Carousel from 'react-native-snap-carousel';
 import {MoviePoster} from './MoviePoster';
 //* Divider
 import Divider from 'react-native-divider';
+import Loader from './Loader';
 
 //* Window Dimensions
 const {width: windowWidth} = Dimensions.get('window');
 
 const HomeScreen = () => {
   const moviesState = useAppSelector(state => state.movies.movies);
+  const isLoading = useAppSelector(state => state.movies.isLoading);
+
+  console.log(isLoading);
 
   return (
     <ScrollView>
@@ -32,7 +36,7 @@ const HomeScreen = () => {
           Let's Make Your {'\n'} Own Cinema
         </Text>
         <Text style={styles.homeScreenContent}>
-          MOVstrem has an extremely impressive film catalog for you to choose
+          MOVstream has an extremely impressive film catalog for you to choose
           from. If you’re looking to watch an obscure film title—maybe a movie
           from decades prior—MOVstrem is the best choice. You also will have the
           ability to rent the most recently released films and recent home
@@ -60,16 +64,19 @@ const HomeScreen = () => {
         </View>
       </View>
 
-      {/* Carousel */}
-      <View style={styles.carouselContainer}>
-        <Carousel
-          data={moviesState}
-          renderItem={({item}: any) => <MoviePoster movie={item} />}
-          sliderWidth={windowWidth}
-          itemWidth={300}
-          inactiveSlideOpacity={0.9}
-        />
-      </View>
+      {isLoading ? (
+        <Loader />
+      ) : (
+        <View style={styles.carouselContainer}>
+          <Carousel
+            data={moviesState}
+            renderItem={({item}: any) => <MoviePoster movie={item} />}
+            sliderWidth={windowWidth}
+            itemWidth={300}
+            inactiveSlideOpacity={0.9}
+          />
+        </View>
+      )}
     </ScrollView>
   );
 };

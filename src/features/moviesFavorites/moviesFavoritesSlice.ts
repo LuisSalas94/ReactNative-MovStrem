@@ -19,13 +19,15 @@ const movieFavoritesSlice = createSlice({
     addToFavorites: (state, action) => {
       const movie = action.payload;
       //state.moviesFavorites.push(action.payload);
+
       //* If movie is not in the array, add it
-      if (!state.moviesFavorites.includes(movie)) {
+      if (action.payload.imdbID !== movie.imdbID) {
+        console.log('Movie already in the array');
+      } else {
         state.moviesFavorites.push(action.payload);
       }
     },
     removeFromFavorites: (state, action) => {
-      console.log(action);
       const movie = action.payload;
       //* If movie is in the array, remove it
       state.moviesFavorites = state.moviesFavorites.filter(

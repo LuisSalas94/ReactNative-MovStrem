@@ -52,7 +52,8 @@ const MovieContentButtons = ({movie, imdbRating, imdbID, Title}: Props) => {
             onPress={() => myCustomShare(Title)}
           />
         </TouchableOpacity>
-        <TouchableOpacity onPress={() => dispatch(addToFavorites(movie))}>
+        <TouchableOpacity
+          onPress={() => dispatch(addToFavorites(movie, imdbID))}>
           <Icon name="bookmark-outline" size={27} color="#f44336" />
         </TouchableOpacity>
       </View>

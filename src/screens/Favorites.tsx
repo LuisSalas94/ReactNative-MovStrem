@@ -32,7 +32,10 @@ export default Favorites;
 const styles = StyleSheet.create({
   favoritesContainer: {
     padding: 25,
+    flex: 1,
+    alignItems: 'center',
   },
+
   favoritesTitle: {
     fontSize: 25,
   },

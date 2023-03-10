@@ -53,9 +53,17 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginTop: 20,
     height: 145,
+    width: 400,
     backgroundColor: '#fff',
     borderRadius: 10,
     padding: 10,
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 10,
+    },
+    shadowOpacity: 0.24,
+    shadowRadius: 7,
   },
   favoriteItemTitle: {
     fontSize: 18,

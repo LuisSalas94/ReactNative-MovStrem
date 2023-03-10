@@ -4,13 +4,13 @@ import {MovieDetailResponse} from '../../interfaces/movieInterface';
 
 //* MovieDetails Interface
 export type MovieDetails = {
-  movieDetails: MovieDetailResponse;
+  movieDetails: MovieDetailResponse[];
   heartCount: number;
 };
 
 //* Initial state
 const initialState: MovieDetails = {
-  movieDetails: {} as MovieDetailResponse,
+  movieDetails: [],
   heartCount: 0,
 };
 
@@ -29,6 +29,9 @@ const movieDetailsSlice = createSlice({
   initialState,
   reducers: {
     incrementHeartCount: (state, action) => {
+      /*  const movie = state.movieDetails.filter(
+        item => item.imdbID === action.payload,
+      ); */
       state.heartCount = state.heartCount + 1;
     },
   },

@@ -1,6 +1,6 @@
-import {StyleSheet, Text, View} from 'react-native';
+import {StyleSheet, View} from 'react-native';
 import React, {useEffect} from 'react';
-import {useAppDispatch, useAppSelector} from '../hooks/storeHooks';
+import {useAppDispatch} from '../hooks/storeHooks';
 import {fetchAsyncMovies} from '../features/movies/moviesSlice';
 import HomeScreen from '../components/HomeScreen';
 
