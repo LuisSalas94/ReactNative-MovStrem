@@ -22,8 +22,9 @@ import {useNavigation} from '@react-navigation/native';
 const {width: windowWidth} = Dimensions.get('window');
 
 const HomeScreen = () => {
-  const moviesState = useAppSelector(state => state.movies.movies);
-  const isLoading = useAppSelector(state => state.movies.isLoading);
+  const {movies: moviesState, isLoading} = useAppSelector(
+    state => state.movies,
+  );
   const navigation = useNavigation();
 
   return (
