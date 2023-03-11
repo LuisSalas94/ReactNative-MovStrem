@@ -17,15 +17,7 @@ const movieFavoritesSlice = createSlice({
   initialState,
   reducers: {
     addToFavorites: (state, action) => {
-      const movie = action.payload;
-      //state.moviesFavorites.push(action.payload);
-
-      //* If movie is not in the array, add it
-      if (action.payload.imdbID !== movie.imdbID) {
-        console.log('Movie already in the array');
-      } else {
-        state.moviesFavorites.push(action.payload);
-      }
+      state.moviesFavorites.push(action.payload);
     },
     removeFromFavorites: (state, action) => {
       const movie = action.payload;

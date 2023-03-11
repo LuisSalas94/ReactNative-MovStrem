@@ -5,7 +5,7 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import {useAppDispatch} from '../hooks/storeHooks';
 import {removeFromFavorites} from '../features/moviesFavorites/moviesFavoritesSlice';
 import {useNavigation} from '@react-navigation/native';
-import SpaceComponent from './SpaceComponent';
+import Toast from 'react-native-toast-message';
 
 interface RenderItemProps {
   item: MovieDetailResponse;
@@ -14,7 +14,6 @@ interface RenderItemProps {
 export const RenderItem = ({item}: RenderItemProps) => {
   const dispatch = useAppDispatch();
   const uri = item.Poster;
-
   const navigation = useNavigation();
 
   return (
@@ -22,6 +21,7 @@ export const RenderItem = ({item}: RenderItemProps) => {
       <View>
         <Image source={{uri}} style={styles.favoriteItemImage} />
       </View>
+
       <View style={styles.favoriteItemContent}>
         <Text style={styles.favoriteItemTitle}>{item.Title}</Text>
         <Text>{item.Genre}</Text>
@@ -52,7 +52,7 @@ const styles = StyleSheet.create({
   favoriteItem: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginTop: 20,
+    marginTop: 10,
     height: 145,
     width: 400,
     backgroundColor: '#fff',

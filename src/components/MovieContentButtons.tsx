@@ -3,10 +3,11 @@ import React from 'react';
 import Icon from 'react-native-vector-icons/Ionicons';
 //* Shared Features
 import Share from 'react-native-share';
-import {Movie, MovieDetailResponse} from '../interfaces/movieInterface';
+import {MovieDetailResponse} from '../interfaces/movieInterface';
 import {useAppDispatch, useAppSelector} from '../hooks/storeHooks';
 import {incrementHeartCount} from '../features/movieDetails/movieDetailsSlice';
 import {addToFavorites} from '../features/moviesFavorites/moviesFavoritesSlice';
+import Toast from 'react-native-toast-message';
 
 interface Props {
   movie: MovieDetailResponse;
@@ -30,8 +31,22 @@ const MovieContentButtons = ({movie, imdbRating, imdbID, Title}: Props) => {
     }
   };
 
+  const handleAddToFavorites = () => {
+    dispatch(addToFavorites(movie));
+    Toast.show({
+      type: 'success',
+      position: 'bottom',
+      text1: `${Title} was added to favorites!`,
+    });
+  };
+
   return (
     <View style={styles.ratingContainer}>
+      <Toast
+        ref={ref => {
+          Toast.setRef(ref);
+        }}
+      />
       <View>
         <TouchableOpacity style={styles.ratingButton}>
           <Text style={styles.ratingButtonText}>IMDB {imdbRating}/10</Text>
@@ -52,8 +67,8 @@ const MovieContentButtons = ({movie, imdbRating, imdbID, Title}: Props) => {
             onPress={() => myCustomShare(Title)}
           />
         </TouchableOpacity>
-        <TouchableOpacity
-          onPress={() => dispatch(addToFavorites(movie, imdbID))}>
+
+        <TouchableOpacity onPress={handleAddToFavorites}>
           <Icon name="bookmark-outline" size={27} color="#f44336" />
         </TouchableOpacity>
       </View>
