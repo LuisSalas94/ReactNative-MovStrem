@@ -17,6 +17,7 @@ import {MoviePoster} from './MoviePoster';
 import Divider from 'react-native-divider';
 import Loader from './Loader';
 import {useNavigation} from '@react-navigation/native';
+import SearchInput from './SearchInput';
 
 //* Window Dimensions
 const {width: windowWidth} = Dimensions.get('window');
@@ -36,6 +37,7 @@ const HomeScreen = () => {
         <Text style={styles.homeScreenTitle}>
           Let's Make Your {'\n'} Own Cinema
         </Text>
+        <SearchInput />
         <Text style={styles.homeScreenContent}>
           MOVstream has an extremely impressive film catalog for you to choose
           from. If you’re looking to watch an obscure film title—maybe a movie
@@ -98,6 +100,7 @@ const styles = StyleSheet.create({
   homeScreenContent: {
     fontSize: 15,
     lineHeight: 25,
+    marginTop: 15,
   },
   homeScreenButtonContainer: {
     flexDirection: 'row',
