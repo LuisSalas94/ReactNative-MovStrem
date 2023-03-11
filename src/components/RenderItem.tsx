@@ -5,6 +5,7 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import {useAppDispatch} from '../hooks/storeHooks';
 import {removeFromFavorites} from '../features/moviesFavorites/moviesFavoritesSlice';
 import {useNavigation} from '@react-navigation/native';
+import SpaceComponent from './SpaceComponent';
 
 interface RenderItemProps {
   item: MovieDetailResponse;
@@ -64,9 +65,10 @@ const styles = StyleSheet.create({
     },
     shadowOpacity: 0.24,
     shadowRadius: 7,
+    marginBottom: 40,
   },
   favoriteItemTitle: {
-    fontSize: 18,
+    fontSize: 17,
     marginBottom: 2,
   },
   favoriteItemImage: {

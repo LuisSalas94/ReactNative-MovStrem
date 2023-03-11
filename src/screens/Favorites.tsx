@@ -3,6 +3,7 @@ import React from 'react';
 import {useAppSelector} from '../hooks/storeHooks';
 import {MovieDetailResponse} from '../interfaces/movieInterface';
 import RenderItem from '../components/RenderItem';
+import MovstremIcon from '../components/MovstremIcon';
 
 const Favorites = () => {
   const favoritesMovies = useAppSelector<MovieDetailResponse>(
@@ -12,6 +13,9 @@ const Favorites = () => {
   return (
     <View style={styles.favoritesContainer}>
       <ScrollView>
+        <View style={{marginVertical: -25}}>
+          <MovstremIcon />
+        </View>
         <View>
           <Text style={styles.favoritesTitle}>Favorites</Text>
         </View>
@@ -38,5 +42,7 @@ const styles = StyleSheet.create({
 
   favoritesTitle: {
     fontSize: 25,
+    textAlign: 'center',
+    marginTop: 10,
   },
 });

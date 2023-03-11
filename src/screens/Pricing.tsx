@@ -1,10 +1,12 @@
 import {StyleSheet, Text, View, ScrollView} from 'react-native';
 import React from 'react';
 import PricingCard from '../components/PricingCard';
+import MovstremIcon from '../components/MovstremIcon';
 
 const Pricing = () => {
   return (
     <ScrollView>
+      <MovstremIcon />
       <View style={styles.pricingContainer}>
         <Text style={styles.pricingTitle}>
           Choose The Plan The Suits For You
@@ -27,7 +29,8 @@ const styles = StyleSheet.create({
   pricingContainer: {
     flex: 1,
     alignItems: 'center',
-    padding: 20,
+    padding: 5,
+    marginBottom: 50,
   },
   pricingTitle: {
     fontSize: 20,

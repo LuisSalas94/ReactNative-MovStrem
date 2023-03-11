@@ -1,5 +1,6 @@
 import {StyleSheet, Text, View} from 'react-native';
 import React from 'react';
+import SpaceComponent from './SpaceComponent';
 
 interface Props {
   Title: string;
@@ -43,7 +44,7 @@ const MovieContent = ({
       <View>
         <Text style={{...styles.contentText, marginTop: 10}}>{Plot}</Text>
       </View>
-      <View style={{paddingVertical: 30}}></View>
+      <SpaceComponent />
     </View>
   );
 };
