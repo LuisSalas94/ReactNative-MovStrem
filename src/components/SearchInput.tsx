@@ -1,4 +1,10 @@
-import {StyleSheet, TextInput, TouchableOpacity, View} from 'react-native';
+import {
+  Alert,
+  StyleSheet,
+  TextInput,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import React, {useState} from 'react';
 import Icon from 'react-native-vector-icons/Ionicons';
 import {fetchAsyncMovies} from '../features/movies/moviesSlice';
@@ -10,9 +16,13 @@ const SearchInput = () => {
   const dispatch = useAppDispatch();
 
   const fetchMovieOrShow = () => {
-    dispatch(fetchAsyncMovies(term));
-    dispatch(fetchAsyncShows(term));
-    setTerm('');
+    if (term) {
+      dispatch(fetchAsyncMovies(term));
+      dispatch(fetchAsyncShows(term));
+      setTerm('');
+    } else {
+      Alert.alert('Dear user', 'Please enter a movie or show name');
+    }
   };
 
   return (

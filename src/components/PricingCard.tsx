@@ -6,7 +6,7 @@ import {pricingInfo} from '../priceInfo';
 const PricingCard = () => {
   return pricingInfo.map(item => {
     return (
-      <View style={styles.pricingCardContainer}>
+      <View style={styles.pricingCardContainer} key={item.title.toString()}>
         <View style={styles.titleContainer}>
           <Text style={styles.title}>{item.title}</Text>
         </View>

@@ -5,7 +5,6 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import {useAppDispatch} from '../hooks/storeHooks';
 import {removeFromFavorites} from '../features/moviesFavorites/moviesFavoritesSlice';
 import {useNavigation} from '@react-navigation/native';
-import Toast from 'react-native-toast-message';
 
 interface RenderItemProps {
   item: MovieDetailResponse;

@@ -1,10 +1,11 @@
-import {Dimensions, StyleSheet, View} from 'react-native';
+import {Dimensions, StyleSheet, View, Text} from 'react-native';
 import React from 'react';
 //* Divider
 import Divider from 'react-native-divider';
 import {useAppSelector} from '../hooks/storeHooks';
 import Carousel from 'react-native-snap-carousel';
 import {MoviePoster} from './MoviePoster';
+import NotFoundMovie from './NotFoundMovie';
 
 //* Window Dimensions
 const {width: windowWidth} = Dimensions.get('window');
@@ -18,6 +19,7 @@ const ShowsScreen = () => {
         Shows
       </Divider>
       <View style={styles.carouselContainer}>
+        {showsState === undefined && <NotFoundMovie />}
         <Carousel
           data={showsState}
           renderItem={({item}: any) => <MoviePoster movie={item} />}

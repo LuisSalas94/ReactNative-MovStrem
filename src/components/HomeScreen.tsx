@@ -18,6 +18,7 @@ import Divider from 'react-native-divider';
 import Loader from './Loader';
 import {useNavigation} from '@react-navigation/native';
 import SearchInput from './SearchInput';
+import NotFoundMovie from './NotFoundMovie';
 
 //* Window Dimensions
 const {width: windowWidth} = Dimensions.get('window');
@@ -67,6 +68,7 @@ const HomeScreen = () => {
           </Divider>
         </View>
       </View>
+      {moviesState === undefined && <NotFoundMovie />}
 
       {isLoading ? (
         <Loader />
