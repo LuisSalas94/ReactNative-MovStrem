@@ -6,12 +6,14 @@ import {MovieDetailResponse} from '../../interfaces/movieInterface';
 export type MovieDetails = {
   movieDetails: MovieDetailResponse[];
   heartCount: number;
+  isLoading: boolean;
 };
 
 //* Initial state
 const initialState: MovieDetails = {
   movieDetails: [],
   heartCount: 0,
+  isLoading: false,
 };
 
 //* MovieDetails Thunk Function
@@ -36,8 +38,12 @@ const movieDetailsSlice = createSlice({
     },
   },
   extraReducers: builder => {
+    builder.addCase(fetchAsyncMovieOrShowDetails.pending, state => {
+      state.isLoading = true;
+    });
     builder.addCase(fetchAsyncMovieOrShowDetails.fulfilled, (state, action) => {
       state.movieDetails = action.payload;
+      state.isLoading = false;
     });
   },
 });

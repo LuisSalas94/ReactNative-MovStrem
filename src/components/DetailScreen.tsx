@@ -17,6 +17,7 @@ import Icon from 'react-native-vector-icons/Ionicons';
 //* Redux Actions
 import MovieContent from './MovieContent';
 import MovieContentButtons from './MovieContentButtons';
+import Loader from './Loader';
 
 //* Get the height of the screen
 const screenHeight = Dimensions.get('screen').height;
@@ -26,9 +27,10 @@ interface Props extends StackScreenProps<RootStackParams, 'DetailScreen'> {}
 
 const DetailScreen = ({route, navigation}: Props) => {
   const movie = route.params;
-  const {imdbID} = movie;
+  const imdbID = movie.imdbID;
   const dispatch = useAppDispatch();
-  const movieDetails = useAppSelector(state => state.movieDetails.movieDetails);
+
+  const {movieDetails, isLoading} = useAppSelector(state => state.movieDetails);
 
   const {
     Poster,
@@ -46,6 +48,14 @@ const DetailScreen = ({route, navigation}: Props) => {
   useEffect(() => {
     dispatch(fetchAsyncMovieOrShowDetails(imdbID));
   }, [dispatch, imdbID]);
+
+  if (isLoading) {
+    return (
+      <View style={styles.isLoadingContainer}>
+        <Loader />
+      </View>
+    );
+  }
 
   return (
     <ScrollView>
@@ -134,5 +144,10 @@ const styles = StyleSheet.create({
     borderRadius: 50,
     backgroundColor: 'rgba(0,0,0,0.5)',
     borderColor: 'transparent',
+  },
+  isLoadingContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 });

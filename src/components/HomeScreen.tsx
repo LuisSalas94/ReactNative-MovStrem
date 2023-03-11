@@ -16,6 +16,7 @@ import {MoviePoster} from './MoviePoster';
 //* Divider
 import Divider from 'react-native-divider';
 import Loader from './Loader';
+import {useNavigation} from '@react-navigation/native';
 
 //* Window Dimensions
 const {width: windowWidth} = Dimensions.get('window');
@@ -23,6 +24,7 @@ const {width: windowWidth} = Dimensions.get('window');
 const HomeScreen = () => {
   const moviesState = useAppSelector(state => state.movies.movies);
   const isLoading = useAppSelector(state => state.movies.isLoading);
+  const navigation = useNavigation();
 
   return (
     <ScrollView>
@@ -45,6 +47,7 @@ const HomeScreen = () => {
 
         <View style={styles.homeScreenButtonContainer}>
           <TouchableOpacity
+            onPress={() => navigation.navigate('Pricing')}
             activeOpacity={0.8}
             style={styles.homeScreenButton1}>
             <Text style={styles.homeScreenButton1Text}>Show Plan</Text>
