@@ -8,6 +8,12 @@
 - Redux Toolkit
 
 ## Full Screen Views
+![Screenshot_1680681479](https://user-images.githubusercontent.com/57297709/230018767-4048776d-8c6a-4e29-ab5b-e1a909046c26.png)
+![Screenshot_1680681533](https://user-images.githubusercontent.com/57297709/230018786-27854f38-fdf8-4e66-9654-391763161f40.png)
+![Screenshot_1680681565](https://user-images.githubusercontent.com/57297709/230018800-491b3df9-179b-4f41-a68a-69312398ff8c.png)
+![Screenshot_1680681574](https://user-images.githubusercontent.com/57297709/230018817-f31dee51-6433-4f2c-a416-e5cede995f17.png)
+
+
 
 ## Learning objectives
 
