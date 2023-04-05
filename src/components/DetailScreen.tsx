@@ -27,9 +27,12 @@ interface Props extends StackScreenProps<RootStackParams, 'DetailScreen'> {}
 
 const DetailScreen = ({route, navigation}: Props) => {
   const movie = route.params;
+  if (!movie) {
+    return <Text style={styles.movie}>You have not selected a movie yet!</Text>;
+  }
+
   const imdbID = movie.imdbID;
   const dispatch = useAppDispatch();
-
   const {movieDetails, isLoading} = useAppSelector(state => state.movieDetails);
 
   const {
@@ -149,5 +152,10 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
+  },
+  movie: {
+    fontSize: 20,
+    padding: 20,
+    textAlign: 'center',
   },
 });
