@@ -1,3 +1,4 @@
+import React from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import Favorites from '../screens/Favorites';
 import Movies from '../screens/Movies';

@@ -31,9 +31,6 @@ const movieDetailsSlice = createSlice({
   initialState,
   reducers: {
     incrementHeartCount: (state, action) => {
-      /*  const movie = state.movieDetails.filter(
-        item => item.imdbID === action.payload,
-      ); */
       state.heartCount = state.heartCount + 1;
     },
   },

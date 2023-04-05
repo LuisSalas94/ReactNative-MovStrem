@@ -1,20 +1,15 @@
-import {StyleSheet, Text, View, ScrollView} from 'react-native';
 import React, {useEffect} from 'react';
-import {useAppDispatch} from '../hooks/storeHooks';
+import {ScrollView} from 'react-native';
 import {
   fetchAsyncMovies,
   fetchAsyncShows,
 } from '../features/movies/moviesSlice';
 import HomeScreen from '../components/HomeScreen';
 import ShowsScreen from '../components/ShowsScreen';
+import {useMovies} from '../hooks/useMovies';
 
 const Movies = () => {
-  const dispatch = useAppDispatch();
-
-  const movies = ['star Wars', 'batman', 'avengers', 'lord of the rings'];
-  const shows = ['Stranger Things', 'friends', 'the walking dead'];
-  const randomMovie = Math.floor(Math.random() * movies.length);
-  const randomShow = Math.floor(Math.random() * shows.length);
+  const {dispatch, movies, shows, randomMovie, randomShow} = useMovies();
 
   useEffect(() => {
     dispatch(fetchAsyncMovies(movies[randomMovie]));
@@ -30,5 +25,3 @@ const Movies = () => {
 };
 
 export default Movies;
-
-const styles = StyleSheet.create({});
